@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boda Gabriella & Francisco</title>
+
+    <!-- Fuentes elegantes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS para estilos rápidos y responsivos -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        peach: '#f5b799',
+                        golden: '#f19e38',
+                        copper: '#cb5c46',
+                        apricot: '#f58e65',
+                        blush: '#f1a29f',
+                        misty: '#93b8c6',
+                        moss: '#7e8955',
+                        bgcream: '#fdfbf7',
+                        textdark: '#4a443c'
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Montserrat"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Animaciones CSS personalizadas */
+        body {
+            background-color: #fdfbf7;
+            color: #4a443c;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Efecto de aparición al hacer scroll */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+            will-change: opacity, visibility;
+        }
+
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* Animaciones de las flores minimalistas */
+        @keyframes float1 {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+        }
+
+        @keyframes float2 {
+            0% {
+                transform: translateY(0) translateX(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(15px) translateX(10px) rotate(-5deg);
+            }
+
+            100% {
+                transform: translateY(0) translateX(0) rotate(0deg);
+            }
+        }
+
+        @keyframes float3 {
+            0% {
+                transform: scale(1) rotate(0deg);
+            }
+
+            50% {
+                transform: scale(1.05) rotate(8deg);
+            }
+
+            100% {
+                transform: scale(1) rotate(0deg);
+            }
+        }
+
+        .flower-1 {
+            animation: float1 6s ease-in-out infinite;
+        }
+
+        .flower-2 {
+            animation: float2 7s ease-in-out infinite reverse;
+        }
+
+        .flower-3 {
+            animation: float3 8s ease-in-out infinite;
+        }
+
+        /* Posicionamiento absoluto para decoraciones de fondo */
+        .bg-flower {
+            position: absolute;
+            z-index: 0;
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        /* Estilos del Quiz */
+        .quiz-option {
+            transition: all 0.3s ease;
+        }
+
+        .quiz-option:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .quiz-option.selected {
+            background-color: #f1a29f;
+            /* blush */
+            color: white;
+            border-color: #f1a29f;
+        }
+
+        .quiz-option.correct {
+            background-color: #7e8955;
+            /* moss */
+            color: white;
+            border-color: #7e8955;
+        }
+
+        .quiz-option.wrong {
+            background-color: #cb5c46;
+            /* copper */
+            color: white;
+            border-color: #cb5c46;
+        }
+    </style>
+</head>
+
+<body class="font-sans antialiased">
+
+    <!-- Definición de SVGs reutilizables (Flores detalladas botánicas) -->
+    <svg width="0" height="0" class="hidden">
+        <defs>
+            <!-- Flor 1: Peonía/Rosa en capas superpuestas -->
+            <g id="flower-round" stroke="none">
+                <!-- Pétalos base -->
+                <path d="M25,25 C10,5 5,10 10,25 Z" fill="currentColor" opacity="0.4" transform="rotate(0 25 25)" />
+                <path d="M25,25 C10,5 5,10 10,25 Z" fill="currentColor" opacity="0.4" transform="rotate(72 25 25)" />
+                <path d="M25,25 C10,5 5,10 10,25 Z" fill="currentColor" opacity="0.4" transform="rotate(144 25 25)" />
+                <path d="M25,25 C10,5 5,10 10,25 Z" fill="currentColor" opacity="0.4" transform="rotate(216 25 25)" />
+                <path d="M25,25 C10,5 5,10 10,25 Z" fill="currentColor" opacity="0.4" transform="rotate(288 25 25)" />
+
+                <!-- Pétalos intermedios -->
+                <path d="M25,25 C15,10 8,15 15,25 Z" fill="currentColor" opacity="0.6" transform="rotate(36 25 25)" />
+                <path d="M25,25 C15,10 8,15 15,25 Z" fill="currentColor" opacity="0.6" transform="rotate(108 25 25)" />
+                <path d="M25,25 C15,10 8,15 15,25 Z" fill="currentColor" opacity="0.6" transform="rotate(180 25 25)" />
+                <path d="M25,25 C15,10 8,15 15,25 Z" fill="currentColor" opacity="0.6" transform="rotate(252 25 25)" />
+                <path d="M25,25 C15,10 8,15 15,25 Z" fill="currentColor" opacity="0.6" transform="rotate(324 25 25)" />
+
+                <!-- Pétalos centrales -->
+                <path d="M25,25 C20,15 12,20 20,25 Z" fill="currentColor" opacity="0.8" transform="rotate(18 25 25)" />
+                <path d="M25,25 C20,15 12,20 20,25 Z" fill="currentColor" opacity="0.8" transform="rotate(90 25 25)" />
+                <path d="M25,25 C20,15 12,20 20,25 Z" fill="currentColor" opacity="0.8" transform="rotate(162 25 25)" />
+                <path d="M25,25 C20,15 12,20 20,25 Z" fill="currentColor" opacity="0.8" transform="rotate(234 25 25)" />
+                <path d="M25,25 C20,15 12,20 20,25 Z" fill="currentColor" opacity="0.8" transform="rotate(306 25 25)" />
+
+                <circle cx="25" cy="25" r="4" fill="#fdfbf7" opacity="0.5" />
+            </g>
+
+            <!-- Flor 2: Margarita/Cosmos con textura -->
+            <g id="flower-daisy" stroke="none">
+                <!-- Pétalos principales -->
+                <path d="M25,24 C23,10 25,2 27,2 C29,2 27,10 25,24 Z" fill="currentColor" opacity="0.8"
+                    transform="rotate(0 25 25)" />
+                <path d="M25,24 C23,10 25,2 27,2 C29,2 27,10 25,24 Z" fill="currentColor" opacity="0.8"
+                    transform="rotate(45 25 25)" />
+                <path d="M25,24 C23,10 25,2 27,2 C29,2 27,10 25,24 Z" fill="currentColor" opacity="0.8"
+                    transform="rotate(90 25 25)" />
+                <path d="M25,24 C23,10 25,2 27,2 C29,2 27,10 25,24 Z" fill="currentColor" opacity="0.8"
+                    transform="rotate(135 25 25)" />
+                <path d="M25,24 C23,10 25,2 27,2 C29,2 27,10 25,24 Z" fill="currentColor" opacity="0.8"
+                    transform="rotate(180 25 25)" />
+                <path d="M25,24 C23,10 25,2 27,2 C29,2 27,10 25,24 Z" fill="currentColor" opacity="0.8"
+                    transform="rotate(225 25 25)" />
+                <path d="M25,24 C23,10 25,2 27,2 C29,2 27,10 25,24 Z" fill="currentColor" opacity="0.8"
+                    transform="rotate(270 25 25)" />
+                <path d="M25,24 C23,10 25,2 27,2 C29,2 27,10 25,24 Z" fill="currentColor" opacity="0.8"
+                    transform="rotate(315 25 25)" />
+
+                <!-- Pétalos de fondo -->
+                <path d="M25,23 C20,12 25,5 28,5 C30,5 28,12 25,23 Z" fill="currentColor" opacity="0.6"
+                    transform="rotate(22.5 25 25)" />
+                <path d="M25,23 C20,12 25,5 28,5 C30,5 28,12 25,23 Z" fill="currentColor" opacity="0.6"
+                    transform="rotate(67.5 25 25)" />
+                <path d="M25,23 C20,12 25,5 28,5 C30,5 28,12 25,23 Z" fill="currentColor" opacity="0.6"
+                    transform="rotate(112.5 25 25)" />
+                <path d="M25,23 C20,12 25,5 28,5 C30,5 28,12 25,23 Z" fill="currentColor" opacity="0.6"
+                    transform="rotate(157.5 25 25)" />
+                <path d="M25,23 C20,12 25,5 28,5 C30,5 28,12 25,23 Z" fill="currentColor" opacity="0.6"
+                    transform="rotate(202.5 25 25)" />
+                <path d="M25,23 C20,12 25,5 28,5 C30,5 28,12 25,23 Z" fill="currentColor" opacity="0.6"
+                    transform="rotate(247.5 25 25)" />
+                <path d="M25,23 C20,12 25,5 28,5 C30,5 28,12 25,23 Z" fill="currentColor" opacity="0.6"
+                    transform="rotate(292.5 25 25)" />
+                <path d="M25,23 C20,12 25,5 28,5 C30,5 28,12 25,23 Z" fill="currentColor" opacity="0.6"
+                    transform="rotate(337.5 25 25)" />
+
+                <!-- Centro de la flor -->
+                <circle cx="25" cy="25" r="5" fill="#7e8955" opacity="0.9" />
+                <circle cx="25" cy="25" r="3" fill="#fdfbf7" opacity="0.7" />
+            </g>
+
+            <!-- Flor 3: Rama de hojas tipo Eucalipto -->
+            <g id="flower-branch" stroke="currentColor" stroke-linecap="round">
+                <!-- Tallo -->
+                <path d="M25,50 Q25,25 20,2" fill="none" stroke-width="1.5" />
+                <!-- Hojas -->
+                <path d="M25,42 Q35,35 32,28 Q22,32 24,40" fill="currentColor" opacity="0.6" stroke="none" />
+                <path d="M25,38 Q12,35 15,25 Q22,30 24,36" fill="currentColor" opacity="0.6" stroke="none" />
+                <path d="M24,28 Q32,20 28,12 Q20,18 23,26" fill="currentColor" opacity="0.6" stroke="none" />
+                <path d="M23,26 Q12,20 15,10 Q22,18 22,24" fill="currentColor" opacity="0.6" stroke="none" />
+                <path d="M21,16 Q28,8 24,0 Q18,6 20,14" fill="currentColor" opacity="0.6" stroke="none" />
+                <path d="M21,14 Q12,8 15,0 Q20,6 20,12" fill="currentColor" opacity="0.6" stroke="none" />
+                <path d="M20,2 Q25,-5 20,-10 Q15,-5 20,2" fill="currentColor" opacity="0.6" stroke="none" />
+            </g>
+        </defs>
+    </svg>
+
+    <!-- 1. HEADER / TÍTULO -->
+    <section
+        class="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-10 px-4 text-center">
+        <!-- Flores decorativas animadas -->
+        <svg class="bg-flower flower-1 top-20 left-10 w-24 h-24 text-peach">
+            <use href="#flower-round" />
+        </svg>
+        <svg class="bg-flower flower-2 top-40 right-10 w-20 h-20 text-misty">
+            <use href="#flower-daisy" />
+        </svg>
+        <svg class="bg-flower flower-3 bottom-32 left-1/4 w-32 h-32 text-moss">
+            <use href="#flower-branch" />
+        </svg>
+        <svg class="bg-flower flower-1 bottom-40 right-1/4 w-16 h-16 text-golden">
+            <use href="#flower-daisy" />
+        </svg>
+        <!-- Nuevas flores -->
+        <svg class="bg-flower flower-3 top-1/3 left-4 w-20 h-20 text-blush opacity-40">
+            <use href="#flower-branch" />
+        </svg>
+        <svg class="bg-flower flower-2 bottom-20 right-1/3 w-28 h-28 text-apricot opacity-30">
+            <use href="#flower-round" />
+        </svg>
+
+        <div class="relative z-10 fade-in-section">
+            <h2 class="text-sm md:text-base tracking-[0.3em] uppercase text-moss mb-4 font-semibold">Nos Casamos</h2>
+            <h1 class="font-serif text-6xl md:text-8xl text-copper mb-6 leading-tight">Gabriella <br> <span
+                    class="text-4xl md:text-6xl text-golden">&amp;</span> <br> Francisco</h1>
+            <div class="h-px w-24 bg-copper mx-auto mb-6"></div>
+            <p class="font-serif text-2xl md:text-3xl text-textdark italic tracking-widest">13 de Junio 2026</p>
+        </div>
+
+        <div class="absolute bottom-10 animate-bounce text-misty">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3">
+                </path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- 2. NUESTRA HISTORIA -->
+    <section class="relative py-24 px-6 md:px-20 overflow-hidden bg-white/50">
+        <svg class="bg-flower flower-2 -top-10 right-0 w-40 h-40 text-blush opacity-30">
+            <use href="#flower-round" />
+        </svg>
+        <svg class="bg-flower flower-1 bottom-0 left-0 w-32 h-32 text-apricot opacity-40">
+            <use href="#flower-daisy" />
+        </svg>
+        <!-- Nuevas flores -->
+        <svg class="bg-flower flower-3 top-1/2 left-10 w-24 h-24 text-golden opacity-30">
+            <use href="#flower-branch" />
+        </svg>
+        <svg class="bg-flower flower-1 bottom-10 right-10 w-20 h-20 text-misty opacity-50">
+            <use href="#flower-round" />
+        </svg>
+
+        <div class="max-w-3xl mx-auto text-center fade-in-section relative z-10">
+            <h2 class="font-serif text-4xl md:text-5xl text-copper mb-8">Nuestra Historia</h2>
+            <p class="text-lg leading-relaxed text-textdark mb-6">
+                Todo comenzó en 2022 gracias a un amigo en común, entre la música de los conciertos y la espontaneidad
+                de los planes casuales forjamos nuestra amistad. Dos años después, lo que empezó como un encuentro
+                improvisado entre amigos se transformó, entre paninis y charlas sobre café, en una primera cita donde
+                descubrimos que nuestras almas tenían mucho más en común de lo que imaginamos. Desde ese día, no hemos
+                vuelto a separarnos; hemos crecido juntos, construyendo un hogar en el otro y convirtiéndonos en el
+                mejor equipo.
+            </p>
+            <p class="text-lg leading-relaxed text-textdark">
+                Hoy, con la misma ilusión de aquella tarde, estamos listos para dar inicio al capítulo más especial de
+                nuestra historia.
+            </p>
+            <div class="mt-10 flex justify-center space-x-4">
+                <svg class="w-8 h-8 text-misty flower-3" viewBox="0 0 50 50">
+                    <use href="#flower-branch" />
+                </svg>
+                <svg class="w-8 h-8 text-golden flower-1" viewBox="0 0 50 50">
+                    <use href="#flower-daisy" />
+                </svg>
+                <svg class="w-8 h-8 text-peach flower-2" viewBox="0 0 50 50">
+                    <use href="#flower-round" />
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. QUIZ DE LA PAREJA -->
+    <section class="relative py-24 px-6 overflow-hidden">
+        <svg class="bg-flower flower-3 top-20 left-10 w-24 h-24 text-moss opacity-20">
+            <use href="#flower-branch" />
+        </svg>
+        <svg class="bg-flower flower-1 bottom-10 right-10 w-28 h-28 text-peach opacity-40">
+            <use href="#flower-round" />
+        </svg>
+        <!-- Nuevas flores -->
+        <svg class="bg-flower flower-2 top-10 right-1/4 w-20 h-20 text-copper opacity-20">
+            <use href="#flower-daisy" />
+        </svg>
+        <svg class="bg-flower flower-1 bottom-20 left-1/4 w-16 h-16 text-blush opacity-30">
+            <use href="#flower-round" />
+        </svg>
+
+        <div
+            class="max-w-2xl mx-auto fade-in-section relative z-10 bg-white rounded-3xl p-8 md:p-12 shadow-xl border border-blush/20">
+            <h2 class="font-serif text-3xl md:text-4xl text-center text-copper mb-4">¿Cuánto nos conoces?</h2>
+            <p class="text-center text-sm mb-8 text-moss">Responde estas preguntas antes del gran día.</p>
+
+            <div id="quiz-container">
+                <h3 id="question-text" class="text-xl font-medium text-center mb-6">Cargando pregunta...</h3>
+                <div id="options-container" class="flex flex-col gap-4">
+                    <!-- Opciones generadas por JS -->
+                </div>
+                <div class="mt-6 text-center text-sm text-textdark font-medium">
+                    Pregunta <span id="current-q-num">1</span> de <span id="total-q-num">3</span>
+                </div>
+            </div>
+
+            <div id="quiz-result" class="hidden text-center">
+                <svg class="w-16 h-16 text-golden mx-auto mb-4 flower-1" fill="none" stroke="currentColor"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.514">
+                    </path>
+                </svg>
+                <h3 class="font-serif text-3xl text-copper mb-2">¡Completado!</h3>
+                <p id="score-text" class="text-lg text-textdark"></p>
+                <button onclick="resetQuiz()"
+                    class="mt-6 px-6 py-2 border-2 border-misty text-misty rounded-full hover:bg-misty hover:text-white transition duration-300">Volver
+                    a intentar</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. INFORMACIÓN DE LA BODA -->
+    <section class="relative py-24 px-6 md:px-20 overflow-hidden bg-white/50">
+        <svg class="bg-flower flower-2 top-10 right-20 w-16 h-16 text-golden">
+            <use href="#flower-daisy" />
+        </svg>
+        <svg class="bg-flower flower-1 bottom-10 left-10 w-32 h-32 text-apricot opacity-30">
+            <use href="#flower-round" />
+        </svg>
+        <!-- Nuevas flores -->
+        <svg class="bg-flower flower-3 bottom-1/4 right-10 w-24 h-24 text-moss opacity-40">
+            <use href="#flower-branch" />
+        </svg>
+        <svg class="bg-flower flower-2 top-1/3 left-4 w-20 h-20 text-misty opacity-30">
+            <use href="#flower-daisy" />
+        </svg>
+
+        <div class="max-w-5xl mx-auto fade-in-section relative z-10 text-center">
+            <h2 class="font-serif text-4xl md:text-5xl text-copper mb-12">Dónde & Cuándo</h2>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Ceremonia -->
+                <div class="p-8 border border-peach/30 rounded-2xl bg-white shadow-sm hover:shadow-md transition">
+                    <div class="w-12 h-12 bg-blush/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-6 h-6 text-copper" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="font-serif text-2xl text-golden mb-2">Ceremonia Religiosa</h3>
+                    <p class="font-bold text-textdark mb-1">4:00 PM</p>
+                    <p class="text-textdark mb-4">Parroquia de San Miguel Arcángel</p>
+                    <a href="#" class="text-sm text-misty border-b border-misty pb-1 hover:text-moss transition">Ver en
+                        el mapa</a>
+                </div>
+
+                <!-- Recepción -->
+                <div class="p-8 border border-peach/30 rounded-2xl bg-white shadow-sm hover:shadow-md transition">
+                    <div class="w-12 h-12 bg-misty/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-6 h-6 text-misty" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.701 2.701 0 00-1.5-.454M9 6v2m3-2v2m3-2v2M9 3h.01M12 3h.01M15 3h.01M21 21v-7a2 2 0 00-2-2H5a2 2 0 00-2 2v7h18zm-3-9v-2a2 2 0 00-2-2H8a2 2 0 00-2 2v2h12z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="font-serif text-2xl text-golden mb-2">Recepción & Fiesta</h3>
+                    <p class="font-bold text-textdark mb-1">6:00 PM - Hasta el amanecer</p>
+                    <p class="text-textdark mb-4">Hacienda Los Rosales</p>
+                    <a href="#" class="text-sm text-misty border-b border-misty pb-1 hover:text-moss transition">Ver en
+                        el mapa</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. DRESSCODE -->
+    <section class="relative py-24 px-6 overflow-hidden">
+        <svg class="bg-flower flower-3 top-0 left-1/2 -ml-16 w-32 h-32 text-moss opacity-20">
+            <use href="#flower-branch" />
+        </svg>
+        <!-- Nuevas flores -->
+        <svg class="bg-flower flower-1 bottom-20 left-10 w-24 h-24 text-peach opacity-30">
+            <use href="#flower-round" />
+        </svg>
+        <svg class="bg-flower flower-2 top-20 right-10 w-20 h-20 text-golden opacity-40">
+            <use href="#flower-daisy" />
+        </svg>
+        <svg class="bg-flower flower-3 bottom-10 right-1/4 w-28 h-28 text-blush opacity-20">
+            <use href="#flower-branch" />
+        </svg>
+
+        <div class="max-w-4xl mx-auto fade-in-section relative z-10 flex flex-col items-center gap-8">
+            <div class="text-center mb-4">
+                <svg class="w-12 h-12 text-copper mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                    </path>
+                </svg>
+                <h2 class="font-serif text-4xl md:text-5xl text-copper">Dresscode</h2>
+            </div>
+
+            <!-- Burbuja 1: Introducción -->
+            <div
+                class="w-full max-w-2xl bg-apricot/10 p-8 md:p-10 rounded-[2.5rem] md:rounded-[3rem] border-4 border-white shadow-lg text-center">
+                <p class="text-md md:text-lg text-textdark leading-relaxed"></p>
+                Queremos que este día sea tan especial como lo hemos soñado, por eso les pedimos su ayuda para que
+                todo luzca en armonía y podamos crear recuerdos inolvidables:
+                </p>
+            </div>
+
+            <!-- Burbuja 2: Reglas -->
+            <div
+                class="w-full max-w-2xl bg-misty/10 p-8 md:p-10 rounded-[2.5rem] md:rounded-[3rem] border-4 border-white shadow-lg text-center">
+                <div class="mb-6">
+                    <h3 class="text-lg font-bold text-copper uppercase tracking-widest mb-2">Hombres</h3>
+                    <p class="text-md md:text-lg text-textdark leading-relaxed">
+                        Traje formal con corbata.<br>
+                        <span class="text-sm text-textdark/80">Les agradecemos dejar el color azul exclusivamente para
+                            el novio.</span>
+                    </p>
+                </div>
+
+                <div class="h-px w-20 bg-misty/50 mx-auto mb-6"></div>
+
+                <div>
+                    <h3 class="text-lg font-bold text-copper uppercase tracking-widest mb-2">Mujeres</h3>
+                    <p class="text-md md:text-lg text-textdark leading-relaxed">
+                        Vestido largo en tonos sólidos.<br>
+                        <span class="text-sm text-textdark/80">(Les pedimos, por favor, evitar estampados).<br>El blanco
+                            está reservado para la novia y el azul para nuestras damas de honor y mamás.</span>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Burbuja 3: Consejo (Más pequeña) -->
+            <div
+                class="w-full max-w-lg bg-moss/10 p-6 md:p-8 rounded-[2rem] border-4 border-white shadow-md text-center mt-4">
+                <p class="text-sm md:text-base text-textdark leading-relaxed">
+                    <strong class="text-moss block mb-1">Un consejo:</strong>
+                    Como celebraremos en una hacienda campestre, les sugerimos elegir zapatos de tacón grueso o
+                    plataformas para que el césped no sea un problema y puedan bailar con nosotros toda la noche.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. LLUVIA DE SOBRES -->
+    <section class="relative py-24 px-6 md:px-20 overflow-hidden bg-white/50">
+        <svg class="bg-flower flower-1 bottom-10 right-10 w-24 h-24 text-misty opacity-50">
+            <use href="#flower-daisy" />
+        </svg>
+        <svg class="bg-flower flower-2 top-20 left-10 w-16 h-16 text-blush">
+            <use href="#flower-round" />
+        </svg>
+        <!-- Nuevas flores -->
+        <svg class="bg-flower flower-3 top-10 right-1/4 w-28 h-28 text-copper opacity-20">
+            <use href="#flower-branch" />
+        </svg>
+        <svg class="bg-flower flower-1 bottom-20 left-1/4 w-20 h-20 text-moss opacity-30">
+            <use href="#flower-daisy" />
+        </svg>
+
+        <div class="max-w-2xl mx-auto fade-in-section relative z-10 text-center">
+            <div class="w-16 h-16 bg-peach/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                <svg class="w-8 h-8 text-copper" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                    </path>
+                </svg>
+            </div>
+            <h2 class="font-serif text-4xl text-copper mb-6">Lluvia de Sobres</h2>
+            <p class="text-lg text-textdark mb-8">
+                Su compañía es nuestro regalo más valioso y el mayor motivo de alegría es tenerlos compartiendo nuestra
+                felicidad. Si desean sumarse a este nuevo comienzo con un obsequio de bodas, les agradeceríamos una
+                lluvia de sobres, la cual destinaremos con mucha ilusión a nuestra luna de miel. Recibiremos su presente
+                con mucho cariño en efectivo el día de la celebración o, si les resulta más cómodo, a través de
+                transferencia:
+            </p>
+
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-misty/30 text-left max-w-sm mx-auto">
+                <p class="text-sm text-moss font-semibold uppercase tracking-wider mb-2">Datos Bancarios</p>
+                <p class="text-textdark"><strong>Bre-B:</strong> NuBank</p>
+                <p class="text-textdark"><strong>Llave:</strong> @gbg474</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-misty/30 text-left max-w-sm mx-auto">
+                <p class="text-sm text-moss font-semibold uppercase tracking-wider mb-2">Datos Bancarios</p>
+                <p class="text-textdark"><strong>Banco:</strong> Bancolombia</p>
+                <p class="text-textdark"><strong>Cuenta:</strong> 66263081693</p>
+                <p class="text-textdark"><strong>Datos:</strong> Gabriella Benedetti, C.C. 1018474390</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-misty/30 text-left max-w-sm mx-auto">
+                <p class="text-sm text-moss font-semibold uppercase tracking-wider mb-2">Datos Bancarios</p>
+                <p class="text-textdark"><strong>Banco:</strong> Daviplata o Nequi</p>
+                <p class="text-textdark"><strong>Cuenta:</strong> 305720475</p>
+                <p class="text-textdark"><strong>Datos:</strong> Francisco Diago</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. RSVP (FORMULARIO) -->
+    <section class="relative py-24 px-6 overflow-hidden bg-textdark text-bgcream">
+        <!-- Flores en tonos contrastantes para fondo oscuro -->
+        <svg class="bg-flower flower-3 top-10 right-10 w-32 h-32 text-peach opacity-20">
+            <use href="#flower-branch" />
+        </svg>
+        <svg class="bg-flower flower-1 bottom-10 left-10 w-40 h-40 text-misty opacity-20">
+            <use href="#flower-round" />
+        </svg>
+        <svg class="bg-flower flower-2 bottom-40 right-1/3 w-20 h-20 text-golden opacity-20">
+            <use href="#flower-daisy" />
+        </svg>
+        <!-- Nuevas flores -->
+        <svg class="bg-flower flower-1 top-1/3 left-5 w-24 h-24 text-apricot opacity-20">
+            <use href="#flower-round" />
+        </svg>
+        <svg class="bg-flower flower-3 bottom-10 right-10 w-28 h-28 text-blush opacity-20">
+            <use href="#flower-branch" />
+        </svg>
+
+        <div class="max-w-xl mx-auto fade-in-section relative z-10">
+            <h2 class="font-serif text-4xl md:text-5xl text-peach text-center mb-4">Confirma tu Asistencia</h2>
+            <p class="text-center text-bgcream/80 mb-10">Por favor, confírmanos antes del 1 de Mayo de 2026.</p>
+
+            <form id="rsvp-form"
+                class="space-y-6 bg-white/5 p-8 rounded-2xl backdrop-blur-sm border border-white/10 text-left">
+
+                <!-- NUEVO: Campo general siempre visible -->
+                <div>
+                    <label class="block text-sm font-medium mb-2" for="main-name">Tu Nombre o Apellido de
+                        Familia</label>
+                    <input type="text" id="main-name" required
+                        class="w-full px-4 py-3 rounded-lg bg-white text-textdark focus:outline-none focus:ring-2 focus:ring-peach border-none"
+                        placeholder="Ej: Familia García o Juan Pérez">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium mb-2" for="attendance">¿Asistirás?</label>
+                    <select id="attendance" required
+                        class="w-full px-4 py-3 rounded-lg bg-white text-textdark focus:outline-none focus:ring-2 focus:ring-peach border-none">
+                        <option value="" disabled selected>Selecciona una opción</option>
+                        <option value="yes">¡Sí, ahí estaré celebrando!</option>
+                        <option value="no">Lamentablemente no podré asistir</option>
+                    </select>
+                </div>
+
+                <div id="guest-count-container" class="hidden">
+                    <label class="block text-sm font-medium mb-2" for="guest-count">¿Cuántas personas asisten?</label>
+                    <select id="guest-count"
+                        class="w-full px-4 py-3 rounded-lg bg-white text-textdark focus:outline-none focus:ring-2 focus:ring-peach border-none">
+                        <option value="" disabled selected>Selecciona cantidad</option>
+                        <option value="1">1 Invitado</option>
+                        <option value="2">2 Invitados</option>
+                    </select>
+                </div>
+
+                <!-- Campos Invitado 1 -->
+                <div id="guest-1-fields" class="hidden space-y-4 border-t border-white/20 pt-4 mt-4">
+                    <h4 class="font-serif text-2xl text-golden">Invitado 1</h4>
+                    <div>
+                        <label class="block text-sm font-medium mb-2" for="name-1">Nombre Completo</label>
+                        <input type="text" id="name-1"
+                            class="w-full px-4 py-3 rounded-lg bg-white text-textdark focus:outline-none focus:ring-2 focus:ring-peach border-none">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-2" for="dietary-1">Restricciones Alimenticias
+                            (Opcional)</label>
+                        <input type="text" id="dietary-1"
+                            class="w-full px-4 py-3 rounded-lg bg-white text-textdark focus:outline-none focus:ring-2 focus:ring-peach border-none"
+                            placeholder="Alergias, vegano, vegetariano...">
+                    </div>
+                </div>
+
+                <!-- Campos Invitado 2 -->
+                <div id="guest-2-fields" class="hidden space-y-4 border-t border-white/20 pt-4 mt-4">
+                    <h4 class="font-serif text-2xl text-golden">Invitado 2</h4>
+                    <div>
+                        <label class="block text-sm font-medium mb-2" for="name-2">Nombre Completo</label>
+                        <input type="text" id="name-2"
+                            class="w-full px-4 py-3 rounded-lg bg-white text-textdark focus:outline-none focus:ring-2 focus:ring-peach border-none">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-2" for="dietary-2">Restricciones Alimenticias
+                            (Opcional)</label>
+                        <input type="text" id="dietary-2"
+                            class="w-full px-4 py-3 rounded-lg bg-white text-textdark focus:outline-none focus:ring-2 focus:ring-peach border-none"
+                            placeholder="Alergias, vegano, vegetariano...">
+                    </div>
+                </div>
+
+                <button type="submit"
+                    class="w-full py-4 bg-copper text-white font-semibold rounded-lg hover:bg-apricot transition duration-300 shadow-lg mt-4">
+                    Enviar Confirmación
+                </button>
+            </form>
+
+            <div id="rsvp-success"
+                class="hidden text-center py-12 bg-white/5 rounded-2xl backdrop-blur-sm border border-white/10">
+                <svg class="w-16 h-16 text-peach mx-auto mb-4 flower-1" fill="none" stroke="currentColor"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
+                    </path>
+                </svg>
+                <h3 class="font-serif text-3xl text-golden mb-2">¡Gracias!</h3>
+                <p class="text-bgcream/80">Hemos recibido tu respuesta.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-textdark text-center py-8 border-t border-white/10">
+        <h2 class="font-serif text-2xl text-peach">G & F</h2>
+        <p class="text-xs text-bgcream/50 mt-2">13 . 06 . 2026</p>
+    </footer>
+
+    <!-- LÓGICA DE JAVASCRIPT -->
+    <script>
+        // 1. Intersección Observer para animaciones al hacer scroll (Fade-In)
+        const faders = document.querySelectorAll('.fade-in-section');
+        const appearOptions = {
+            threshold: 0.15,
+            rootMargin: "0px 0px -50px 0px"
+        };
+        const appearOnScroll = new IntersectionObserver(function (entries, observer) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+            });
+        }, appearOptions);
+
+        faders.forEach(fader => {
+            appearOnScroll.observe(fader);
+        });
+
+        // 2. Lógica del Quiz
+        const quizData = [
+            {
+                question: "¿En qué país nos comprometimos?",
+                options: ["Italia", "Colombia", "México"],
+                correctAnswer: 1 // Indice de la correcta (Colombia)
+            },
+            {
+                question: "¿Quién es más probable que llore en la ceremonia?",
+                options: ["Gabriella", "Francisco", "Ambos por igual"],
+                correctAnswer: 2
+            },
+            {
+                question: "¿Cuál es nuestro pasatiempo favorito juntos?",
+                options: ["Ver maratones de series", "Probar restaurantes nuevos", "Ir de excursión a la montaña"],
+                correctAnswer: 1
+            },
+            {
+                question: "¿Cuál es nuestro destino soñado para la luna de miel?",
+                options: ["Japón", "Grecia", "Maldivas"],
+                correctAnswer: 1
+            },
+            {
+                question: "¿Quién dio el primer paso?",
+                options: ["Gabriella", "Francisco", "Fue mutuo"],
+                correctAnswer: 1
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        let score = 0;
+
+        const questionEl = document.getElementById('question-text');
+        const optionsContainer = document.getElementById('options-container');
+        const currentNumEl = document.getElementById('current-q-num');
+        const totalNumEl = document.getElementById('total-q-num');
+        const quizContainer = document.getElementById('quiz-container');
+        const resultContainer = document.getElementById('quiz-result');
+        const scoreText = document.getElementById('score-text');
+
+        function loadQuiz() {
+            totalNumEl.innerText = quizData.length;
+            const currentQuiz = quizData[currentQuestionIndex];
+            questionEl.innerText = currentQuiz.question;
+            currentNumEl.innerText = currentQuestionIndex + 1;
+
+            optionsContainer.innerHTML = '';
+            currentQuiz.options.forEach((option, index) => {
+                const button = document.createElement('button');
+                button.innerText = option;
+                button.classList.add('quiz-option', 'w-full', 'text-left', 'px-6', 'py-4', 'rounded-xl', 'border', 'border-misty', 'text-textdark', 'font-medium', 'bg-bgcream');
+                button.onclick = () => selectOption(button, index, currentQuiz.correctAnswer);
+                optionsContainer.appendChild(button);
+            });
+        }
+
+        function selectOption(btn, selectedIndex, correctIndex) {
+            // Deshabilitar todos los botones
+            const allBtns = optionsContainer.querySelectorAll('.quiz-option');
+            allBtns.forEach(b => {
+                b.disabled = true;
+                b.style.pointerEvents = 'none';
+            });
+
+            if (selectedIndex === correctIndex) {
+                btn.classList.add('correct');
+                score++;
+            } else {
+                btn.classList.add('wrong');
+                // Mostrar cual era la correcta
+                allBtns[correctIndex].classList.add('correct');
+            }
+
+            setTimeout(() => {
+                currentQuestionIndex++;
+                if (currentQuestionIndex < quizData.length) {
+                    loadQuiz();
+                } else {
+                    showQuizResult();
+                }
+            }, 1500);
+        }
+
+        function showQuizResult() {
+            quizContainer.classList.add('hidden');
+            resultContainer.classList.remove('hidden');
+            let message = "";
+            if (score === quizData.length) message = "¡Wow! Nos conoces a la perfección. 💕";
+            else if (score > 0) message = "¡Nada mal! Conoces bastantes detalles sobre nosotros. ✨";
+            else message = "¡Ups! Tienes que pasar más tiempo con nosotros. 😂";
+
+            scoreText.innerHTML = `Acertaste <strong>${score}</strong> de <strong>${quizData.length}</strong>.<br><br>${message}`;
+        }
+
+        function resetQuiz() {
+            currentQuestionIndex = 0;
+            score = 0;
+            quizContainer.classList.remove('hidden');
+            resultContainer.classList.add('hidden');
+            loadQuiz();
+        }
+
+        // Iniciar quiz
+        loadQuiz();
+
+        // 3. Lógica del formulario RSVP
+        const rsvpForm = document.getElementById('rsvp-form');
+        const mainNameInput = document.getElementById('main-name');
+        const attendanceSelect = document.getElementById('attendance');
+        const guestCountContainer = document.getElementById('guest-count-container');
+        const guestCountSelect = document.getElementById('guest-count');
+        const guest1Fields = document.getElementById('guest-1-fields');
+        const guest2Fields = document.getElementById('guest-2-fields');
+        const name1Input = document.getElementById('name-1');
+        const name2Input = document.getElementById('name-2');
+
+        // Autocompletar el nombre del invitado 1 con el nombre principal
+        mainNameInput.addEventListener('input', function () {
+            name1Input.value = this.value;
+        });
+
+        // Mostrar/Ocultar cantidad de invitados basado en si asisten o no
+        attendanceSelect.addEventListener('change', (e) => {
+            if (e.target.value === 'yes') {
+                guestCountContainer.classList.remove('hidden');
+                guestCountSelect.required = true;
+            } else {
+                guestCountContainer.classList.add('hidden');
+                guestCountSelect.required = false;
+                guestCountSelect.value = "";
+                hideGuestFields();
+            }
+        });
+
+        // Mostrar/Ocultar campos de invitados según la cantidad seleccionada
+        guestCountSelect.addEventListener('change', (e) => {
+            hideGuestFields();
+            if (e.target.value === '1') {
+                guest1Fields.classList.remove('hidden');
+                name1Input.required = true;
+            } else if (e.target.value === '2') {
+                guest1Fields.classList.remove('hidden');
+                guest2Fields.classList.remove('hidden');
+                name1Input.required = true;
+                name2Input.required = true;
+            }
+        });
+
+        function hideGuestFields() {
+            guest1Fields.classList.add('hidden');
+            guest2Fields.classList.add('hidden');
+            name1Input.required = false;
+            name2Input.required = false;
+        }
+
+        rsvpForm.addEventListener('submit', function (e) {
+            e.preventDefault(); // Evita recargar la página
+
+            // --- INTEGRACIÓN CON GOOGLE FORMS / SHEETS ---
+            // 1. Reemplaza esta URL con el enlace action de tu Google Form
+            const formUrl = "https://docs.google.com/forms/d/e/TU_ID_DE_FORMULARIO/formResponse";
+
+            // 2. Preparamos los datos a enviar
+            const formData = new FormData();
+
+            // IMPORTANTE: Reemplaza los "entry.123456" con los IDs reales de tus preguntas en Google Forms
+            formData.append("entry.000001", document.getElementById('main-name').value);
+            formData.append("entry.000002", document.getElementById('attendance').value);
+
+            if (document.getElementById('attendance').value === 'yes') {
+                formData.append("entry.000003", guestCountSelect.value);
+
+                if (guestCountSelect.value >= '1') {
+                    formData.append("entry.000004", name1Input.value);
+                    formData.append("entry.000005", document.getElementById('dietary-1').value);
+                }
+                if (guestCountSelect.value === '2') {
+                    formData.append("entry.000006", name2Input.value);
+                    formData.append("entry.000007", document.getElementById('dietary-2').value);
+                }
+            }
+
+            // Cambiar el texto del botón temporalmente
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerText;
+            submitBtn.innerText = "Enviando confirmación...";
+            submitBtn.disabled = true;
+
+            // Enviar datos en segundo plano sin salir de tu página de invitación
+            fetch(formUrl, {
+                method: 'POST',
+                mode: 'no-cors', // Evita problemas de bloqueo del navegador
+                body: formData
+            }).then(() => {
+                // Ocultar formulario
+                this.style.display = 'none';
+                // Mostrar mensaje de éxito
+                document.getElementById('rsvp-success').classList.remove('hidden');
+                document.getElementById('rsvp-success').classList.add('fade-in-section', 'is-visible');
+            }).catch(err => {
+                console.error("Error al enviar", err);
+                alert("Hubo un problema al enviar tu confirmación. Intenta de nuevo.");
+                submitBtn.innerText = originalText;
+                submitBtn.disabled = false;
+            });
+        });
+
+    </script>
+</body>
+
+</html>
