@@ -860,25 +860,25 @@
 
             // --- INTEGRACIÓN CON GOOGLE FORMS / SHEETS ---
             // 1. Reemplaza esta URL con el enlace action de tu Google Form
-            const formUrl = "https://docs.google.com/forms/d/e/TU_ID_DE_FORMULARIO/formResponse";
+            const formUrl = "https://docs.google.com/forms/d/e/1FAIpQLSeOjCmpTeHwIQpd4RkwnHa7m7oJhmwceUhSsD93SrigeeUaww/formResponse";
 
             // 2. Preparamos los datos a enviar
             const formData = new FormData();
 
             // IMPORTANTE: Reemplaza los "entry.123456" con los IDs reales de tus preguntas en Google Forms
-            formData.append("entry.000001", document.getElementById('main-name').value);
-            formData.append("entry.000002", document.getElementById('attendance').value);
+            formData.append("entry.2097304022", document.getElementById('main-name').value);
+            formData.append("entry.1354334391", document.getElementById('attendance').value);
 
             if (document.getElementById('attendance').value === 'yes') {
-                formData.append("entry.000003", guestCountSelect.value);
+                formData.append("entry.979532414", guestCountSelect.value);
 
                 if (guestCountSelect.value >= '1') {
-                    formData.append("entry.000004", name1Input.value);
-                    formData.append("entry.000005", document.getElementById('dietary-1').value);
+                    formData.append("entry.1895192809", name1Input.value);
+                    formData.append("entry.727343676", document.getElementById('dietary-1').value);
                 }
                 if (guestCountSelect.value === '2') {
-                    formData.append("entry.000006", name2Input.value);
-                    formData.append("entry.000007", document.getElementById('dietary-2').value);
+                    formData.append("entry.377150588", name2Input.value);
+                    formData.append("entry.893172850", document.getElementById('dietary-2').value);
                 }
             }
 
